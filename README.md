@@ -14,6 +14,10 @@
 
 
 ***
+
+<details>
+  <summary><strong>locals, data, variable<strong></summary>
+    
 ```
 resource "local_file" "hi" {
   filename = "${local.path}/hellss"
@@ -76,6 +80,6 @@ resource "aws_instance" "web" {
 | data     | 전역           | `data.<TYPE>.<NAME>.<PROPERTY>`               | 리소스 속성, 모듈 입력, 계획 옵션 등에서 사용 가능 |
 | variable | 전역           | `variable "변수명" = "값"`                    | 리소스 속성, 모듈 입력, 계획 옵션 등에서 사용 가능 |
 ***
-
+</details>
 
 
