@@ -138,7 +138,7 @@ variable "path" {
 
 resource "local_file" "pathpath" {
   filename = "${var.path}/hello/path.txt"   
-  content = var.path                      # path.module/hello/path.txt 파일이 생김김
+  content = var.path                      # path.module/hello/path.txt 파일이 생김
 }                                         # 내용은 path.module
 ```
 
