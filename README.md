@@ -138,13 +138,45 @@ variable "path" {
 
 resource "local_file" "pathpath" {
   filename = "${var.path}/hello/path.txt"   
-  content = var.path                      # path.module/hello/path.txt 파일이 생김
-}                                         # 내용은 path.module
+  content = var.path                   
+}                                        
 ```
+
+`path.module/hello` 경로에 `path.module` 텍스트가 입력된 `path.txt` 파일이 생긴다  
 
 ***
 
 </details>
+
+***
+
+<details>
+  <summary><strong>조건식을 이용한 파일 생성<strong></summary>
+
+  ***
+
+```
+variable "jojo" {
+  type    = list(string)
+  default = ["aa", "bbb", "cccc", "dddd"]
+}
+
+resource "local_file" "jojojo" {
+  for_each = toset(var.jojo)
+  filename = length(each.key) == 2 ? "${path.module}/${each.key}.txt" : "${path.module}/hello/${each.key}.txt"
+  content  = each.key
+```
+
+글자수가 2글자인 경우에는 `path.module` 경로에 `each.key.txt` 가 생성되고,
+
+2글자가 아닌 경우에는 `path.module/hello` 경로에 `each.key.txt` 가 생선된다.
+
+
+</details>
+
+***
+
+
   
 
 
