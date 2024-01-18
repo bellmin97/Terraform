@@ -17,6 +17,8 @@
 
 <details>
   <summary><strong>locals, data, variable<strong></summary>
+
+  ***
     
 ```
 resource "local_file" "hi" {
@@ -81,5 +83,43 @@ resource "aws_instance" "web" {
 | variable | 전역           | `variable "변수명" = "값"`                    | 리소스 속성, 모듈 입력, 계획 옵션 등에서 사용 가능 |
 ***
 </details>
+
+***
+
+<details>
+  <summary><strong>variable 타입에 따른 반복문<strong></summary>
+
+  ***
+    
+```
+variable "name" {
+  type    = list(string)
+  default = ["abc", "bcd", "cde"]
+}
+
+resource "local_file" "hello" {
+  for_each = toset(var.name)
+  filename = "${path.module}/${each.value}.txt"
+  content  = each.key
+}
+
+variable "map" {
+  type    =  map(string)
+  default = {
+    "map1" = "map11111111111",
+    "map2" = "map222222222222",
+    "map3" = "map333333333333"
+  }
+}
+
+resource "local_file" "mapmap" {
+  for_each = var.map
+  filename = "${path.module}/${each.key}.txt"
+  content  = each.value
+}
+```
+</details>
+
+
 
 
