@@ -98,7 +98,7 @@ variable "name" {
 }
 
 resource "local_file" "hello" {
-  for_each = toset(var.name)
+  for_each = toset(var.name)                          
   filename = "${path.module}/${each.value}.txt"
   content  = each.key
 }
@@ -118,8 +118,35 @@ resource "local_file" "mapmap" {
   content  = each.value
 }
 ```
+`for_each` 를 선언해야 `each.key` 와 `each.value` 를 사용할 수 있다.
 </details>
 
+***
+
+<details>
+  <summary><strong>variable로 파일 경로 지정<strong></summary>
+
+```
+resource "local_file" "mapmap" {
+  for_each = var.map
+  filename = "${path.module}/${each.key}.txt"
+  content  = each.value
+}
+
+variable "path" {
+  default = "path.module"
+}
+
+resource "local_file" "pathpath" {
+  filename = "${var.path}/hello/path.txt"   
+  content = var.path                      # path.module/hello/path.txt 파일이 생김김
+}                                         # 내용은 path.module
+```
+
+***
+
+</details>
+  
 
 
 
