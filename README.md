@@ -1,17 +1,14 @@
 ---
 # 😃
 
+<details>
+  <summary><strong>terraform 유용한 명령어<strong></summary>
+
+  ***
+    
 `terraform fmt` 스타일을 맞춰준다.(띄어쓰기나 괄호위치)
 
-
-
-
-
-
-
-
-
-
+  </details>
 
 ***
 
@@ -125,6 +122,8 @@ resource "local_file" "mapmap" {
 
 <details>
   <summary><strong>variable로 파일 경로 지정<strong></summary>
+
+***
 
 ```
 resource "local_file" "mapmap" {
